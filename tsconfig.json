@@ -1,0 +1,25 @@
+// prettier-ignore
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "compilerOptions": {
+    "skipLibCheck": true  ,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@muny-components/*": ["src/components/*"],
+      "@muny-screens/*": ["src/screens/*"],
+      "@muny-navigation/*": ["src/navigation/*"],
+      "@muny-styles/*": ["src/styles/*"],
+      "@muny-assets/*": ["src/assets/*"],
+    }                              
+  },
+  "exclude": ["node_modules", "build"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}
