@@ -1,9 +1,10 @@
-import {WHITE, GRAY_DARK, ACTIVE, ALERT} from './colors';
+import {WHITE, GRAY_DARK, ACTIVE, ALERT, BLACK} from './colors';
 import {FONT_REGULAR, FONT_SIZE_32, FONT_SIZE_16, LINE_HEIGHT_16} from './typography';
 
 export const headingText = {
   fontFamily: FONT_REGULAR.fontFamily,
   fontSize: FONT_SIZE_32,
+  color: BLACK,
 };
 
 export const regularText = {

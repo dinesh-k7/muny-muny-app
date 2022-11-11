@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View, Text} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {Provider} from 'react-redux';
+import {WebView} from 'react-native-webview';
 
 import {Colors} from './styles/global-styles';
 import {RootNavigator} from './navigation/RootNavigator';
@@ -17,6 +18,15 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Provider store={store}>
+        <View>
+          <Text>
+            <WebView
+              source={{
+                uri: 'https://www.paypal.com/sdk/js?client-id=Aa2YyWsIRwixqn9O52CErPM0wecIfjHU-H8I1FgtvsgGHuDEjq90vun8di9N-ZCy1WaHpT58wg6pyit1&vault=true&intent=subscription',
+              }}
+            />
+          </Text>
+        </View>
         <RootNavigator />
         <StatusBar backgroundColor={Colors.GREEN} animated={true} barStyle={'default'} />
         <OverlaySpinner />

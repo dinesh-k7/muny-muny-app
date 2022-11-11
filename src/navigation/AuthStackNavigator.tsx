@@ -3,12 +3,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {LoginScreen} from '@muny-screens/auth/LoginScreen';
 import {SignupScreen} from '@muny-screens/auth/SignupScreen';
+import {BillingScreen} from '@muny-screens/BillingScreen';
 
 const AuthStack = createNativeStackNavigator();
 
 export const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator screenOptions={{title: ''}} initialRouteName="Login">
+    <AuthStack.Navigator screenOptions={{title: ''}} initialRouteName="Billing">
       <AuthStack.Screen
         name="Login"
         component={LoginScreen}
@@ -22,6 +23,7 @@ export const AuthStackNavigator = () => {
           headerBackTitleVisible: false,
         }}
       />
+      <AuthStack.Screen name="Billing" component={BillingScreen} options={{title: 'Billing'}} />
     </AuthStack.Navigator>
   );
 };
