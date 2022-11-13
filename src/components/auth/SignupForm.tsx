@@ -398,6 +398,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
 const styles = StyleSheet.create({
   signupFormContainer: {
     flex: 1,
+    marginTop: 24,
   },
   textFieldContainer: {
     flex: 2,

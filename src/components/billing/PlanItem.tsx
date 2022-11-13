@@ -1,17 +1,21 @@
 /* eslint-disable indent */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {List} from 'react-native-paper';
 import {borderRadius, boxShadow} from '@muny-styles/mixins';
-import {GradientButton} from '@muny-components/native';
+import {GradientButton, PaypalSubscription} from '@muny-components/native';
 import {Colors, CommonStyles} from '@muny-styles/global-styles';
 
 interface Props {
   plan: any;
+  isMonthly: boolean;
 }
-const PlanItem: React.FC<Props> = ({plan}) => {
+const PlanItem: React.FC<Props> = ({plan, isMonthly}) => {
+  const [showSubscribeBtn, setSubscribeStatus] = useState(false);
+  const [selectedPlanId, setSelectedPlanId] = useState('');
+
   // Render Image component for plan feature icon based on it's type
   const getImage = (imageName: string) => {
     switch (imageName) {
@@ -57,9 +61,9 @@ const PlanItem: React.FC<Props> = ({plan}) => {
         </View>
         <View style={[styles.planPrice, {backgroundColor: plan.priceBgColor}]}>
           <Text style={{color: plan.fontColor, fontWeight: 'bold', fontSize: 20}}>
-            ${plan.price}
+            ${isMonthly ? plan.price : plan.yearlyPrice}
           </Text>
-          <Text style={{color: plan.fontColor}}>Monthly</Text>
+          <Text style={{color: plan.fontColor}}>{isMonthly ? 'Monthly' : 'Yearly'} </Text>
         </View>
       </View>
       <View style={styles.features}>
@@ -93,8 +97,15 @@ const PlanItem: React.FC<Props> = ({plan}) => {
           text={'Start Free Trial'}
           style={CommonStyles.buttonGradient}
           textStyle={CommonStyles.buttonGradientText}
-          onPress={() => console.log('selected plan', plan)}
+          onPress={() => {
+            setSelectedPlanId(isMonthly ? plan.monthlySubscriptionId : plan.yearlySubscriptionId);
+            setSubscribeStatus(true);
+          }}
         />
+        {showSubscribeBtn &&
+        selectedPlanId === (isMonthly ? plan.monthlySubscriptionId : plan.yearlySubscriptionId) ? (
+          <PaypalSubscription planId={selectedPlanId} />
+        ) : null}
       </View>
     </View>
   );

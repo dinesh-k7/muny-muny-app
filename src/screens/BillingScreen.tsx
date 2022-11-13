@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 
 import {Colors} from '@muny-styles/global-styles';
 import {BillingHeader, PlansContainer} from '@muny-components/native';
 
 export const BillingScreen = () => {
+  const [isMonthly, setMonthly] = useState(true);
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.billingContainer}>
-        <BillingHeader />
-        <PlansContainer />
+        <BillingHeader onPressHandler={status => setMonthly(status)} />
+        <PlansContainer isMonthly={isMonthly} />
       </View>
     </ScrollView>
   );

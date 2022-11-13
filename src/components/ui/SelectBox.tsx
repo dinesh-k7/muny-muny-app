@@ -30,6 +30,7 @@ const SelectBox: React.FC<Props> = ({style, placeHolderText}) => {
           name: 'United States',
           code: 'US',
         }}
+        search
         searchInputStyle={styles.dropdown1searchInputStyleStyle}
         searchPlaceHolder={'Search here'}
         searchPlaceHolderColor={'darkgrey'}

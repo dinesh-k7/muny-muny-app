@@ -1,29 +1,46 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {StyleSheet} from 'react-native';
 
 import {LoginScreen} from '@muny-screens/auth/LoginScreen';
 import {SignupScreen} from '@muny-screens/auth/SignupScreen';
-import {BillingScreen} from '@muny-screens/BillingScreen';
+import {AuthRoutes} from './routes';
+import {Colors} from '@muny-styles/global-styles';
 
-const AuthStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator screenOptions={{title: ''}} initialRouteName="Billing">
-      <AuthStack.Screen
-        name="Login"
+    <Stack.Navigator
+      screenOptions={{
+        title: '',
+        headerShadowVisible: true,
+        contentStyle: styles.header,
+        headerTitleStyle: styles.title,
+      }}>
+      <Stack.Screen
+        name={AuthRoutes.LOGIN}
         component={LoginScreen}
-        options={{headerShadowVisible: false, headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: AuthRoutes.LOGIN}}
       />
-      <AuthStack.Screen
-        name="Signup"
+      <Stack.Screen
+        name={AuthRoutes.SIGNUP}
         component={SignupScreen}
         options={{
-          headerShadowVisible: false,
-          headerBackTitleVisible: false,
+          title: AuthRoutes.SIGNUP,
         }}
       />
-      <AuthStack.Screen name="Billing" component={BillingScreen} options={{title: 'Billing'}} />
-    </AuthStack.Navigator>
+    </Stack.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    borderTopColor: Colors.GRAY_LIGHT,
+    borderWidth: 1,
+  },
+  title: {
+    color: Colors.GREEN_LIGHT,
+    fontWeight: 'bold',
+  },
+});

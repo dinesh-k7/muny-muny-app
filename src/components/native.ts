@@ -8,6 +8,8 @@ import ToggleButton from './ui/ToggleButton';
 
 // Common components
 import OverlaySpinner from './common/OverlaySpinner';
+import PaypalSubscription from './common/PaypalSubscription';
+import PaymentStatus from './common/PaymentStatus';
 
 // Auth Component
 import {LoginForm} from './auth/LoginForm';
@@ -35,4 +37,6 @@ export {
   BillingHeader,
   PlansContainer,
   PlanItem,
+  PaypalSubscription,
+  PaymentStatus,
 };

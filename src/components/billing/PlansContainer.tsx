@@ -1,16 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {PLANS} from '../../constants/plans';
 import PlanItem from './PlanItem';
 
-const PlansContainer = () => {
+interface Props {
+  isMonthly: boolean;
+}
+const PlansContainer: React.FC<Props> = ({isMonthly}) => {
   return (
     <View style={styles.container}>
       {PLANS &&
         PLANS.length &&
         PLANS.map(plan => {
-          return <PlanItem key={plan.id} plan={plan} />;
+          return <PlanItem key={plan.id} plan={plan} isMonthly={isMonthly} />;
         })}
     </View>
   );
