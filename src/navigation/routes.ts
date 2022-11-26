@@ -11,3 +11,11 @@ export enum BillingRoutes {
   PAYPAL_SUBSCRIPTION = 'PaypalSubscription',
   PAYMENT_STATUS = 'PaymentStatus',
 }
+
+export enum Tabs {
+  TABS = 'Tabs',
+  DASHBOARD_SCREEN = 'DashboardScreen',
+  BUDGET_FORECAST_SCREEN = 'BudgetForecastScreen',
+  WISHLIST_SCREEN = 'WishlistScreen',
+  CONTROL_BOARD_SCREEN = 'ControlBoardScreen',
+}

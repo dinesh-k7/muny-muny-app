@@ -6,7 +6,7 @@ import {BillingScreen} from '@muny-screens/BillingScreen';
 import {PaypalWebView} from '@muny-screens/PaypalWebView';
 import {PaymentStatus} from '@muny-components/native';
 import {Colors} from '@muny-styles/global-styles';
-import {BillingRoutes} from './routes';
+import {BillingRoutes} from '../routes';
 
 const BillingStack = createNativeStackNavigator();
 

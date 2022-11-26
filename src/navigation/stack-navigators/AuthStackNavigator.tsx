@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 
 import {LoginScreen} from '@muny-screens/auth/LoginScreen';
 import {SignupScreen} from '@muny-screens/auth/SignupScreen';
-import {AuthRoutes} from './routes';
+import {AuthRoutes} from '../routes';
 import {Colors} from '@muny-styles/global-styles';
 
 const Stack = createNativeStackNavigator();
