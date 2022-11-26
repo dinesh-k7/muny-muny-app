@@ -3,9 +3,11 @@ import React from 'react';
 import {NavigationContainer, getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {AuthStackNavigator} from './AuthStackNavigator';
-import {BillingStackNavigator} from './BillingStackNavigator';
-import {AuthRoutes, BillingRoutes} from './routes';
+import {AuthStackNavigator} from './stack-navigators/AuthStackNavigator';
+import {BillingStackNavigator} from './stack-navigators/BillingStackNavigator';
+import {DrawerNavigator} from './DrawerNavigator';
+import {AuthRoutes, BillingRoutes, Tabs} from './routes';
+import {BottomTabNavigator} from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +23,7 @@ export const RootNavigator = () => {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{title: '', headerShown: false}}
-        initialRouteName={BillingRoutes.BILLING}>
+      <Stack.Navigator screenOptions={{title: '', headerShown: false}} initialRouteName={Tabs.TABS}>
         <Stack.Screen
           name={AuthRoutes.AUTH}
           component={AuthStackNavigator}
@@ -33,6 +33,7 @@ export const RootNavigator = () => {
           })}
         />
         <Stack.Screen name={BillingRoutes.BILLING} component={BillingStackNavigator} />
+        <Stack.Screen name={Tabs.TABS} component={DrawerNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
