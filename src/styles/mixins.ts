@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dimensions, PixelRatio } from 'react-native';
+import {Dimensions, PixelRatio} from 'react-native';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const guidelineBaseWidth = 375;
@@ -30,8 +27,8 @@ export const padding = (top: number, right: number, bottom: number, left: number
 };
 
 export const boxShadow = (
-  color: string,
-  offset = { height: 2, width: 2 },
+  color?: string,
+  offset = {height: 2, width: 2},
   radius = 8,
   opacity = 0.2,
 ) => {
@@ -41,5 +38,14 @@ export const boxShadow = (
     shadowOpacity: opacity,
     shadowRadius: radius,
     elevation: radius,
+  };
+};
+
+export const borderRadius = (radius = 20) => {
+  return {
+    borderBottomLeftRadius: radius,
+    borderBottomRightRadius: radius,
+    borderTopLeftRadius: radius,
+    borderTopRightRadius: radius,
   };
 };

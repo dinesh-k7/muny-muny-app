@@ -259,6 +259,8 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
     implementation project(':react-native-linear-gradient')
+
+    implementation project(':react-native-webview')
     
     implementation fileTree(dir: "libs", include: ["*.jar"])
 

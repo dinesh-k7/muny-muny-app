@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import {Snackbar} from 'react-native-paper';
 
 import {Colors} from '@muny-styles/global-styles';
@@ -7,7 +7,7 @@ import {Colors} from '@muny-styles/global-styles';
 interface Props {
   visibile: boolean;
   text: string;
-  snackBarStyle?: Record<string, unknown>;
+  snackBarStyle?: StyleProp<ViewStyle>;
   duration?: number;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
 }
@@ -25,7 +25,7 @@ const SnackBar: React.FC<Props> = ({
   return (
     <View style={styles.container}>
       <Snackbar
-        style={[styles.snackbar, {...snackBarStyle}]}
+        style={[styles.snackbar, snackBarStyle]}
         duration={duration}
         elevation={elevation}
         visible={visible}

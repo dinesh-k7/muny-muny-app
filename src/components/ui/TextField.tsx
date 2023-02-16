@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import {HelperText, TextInput} from 'react-native-paper';
 
 import {Colors} from '@muny-styles/global-styles';
@@ -19,7 +19,7 @@ interface Props {
   onBlur: () => void;
   onChangeText: (val: any) => void;
   placeholder?: string;
-  style?: Record<string, unknown>;
+  style?: StyleProp<ViewStyle>;
   isPassword?: boolean;
   hasError?: boolean;
   errorMessage?: string;
@@ -41,7 +41,7 @@ const TextField: React.FC<Props> = ({
   maxLength,
 }) => {
   return (
-    <View style={style ? [styles.inputContainer, {...style}] : styles.inputContainer}>
+    <View style={style ? [styles.inputContainer, style] : styles.inputContainer}>
       <TextInput
         error={hasError}
         value={value}

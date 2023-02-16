@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 

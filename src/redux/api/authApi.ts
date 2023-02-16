@@ -1,7 +1,8 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import {SignupData} from 'src/models/auth.model';
 
 import {environment} from '../../constants/environment';
-import {IRegisterResponse} from './types';
+import {LoginResponse} from './types';
 
 export const authApi = createApi({
   reducerPath: 'auth',
@@ -10,16 +11,13 @@ export const authApi = createApi({
     baseUrl: `${environment.BASE_URL}`,
   }),
   endpoints: builder => ({
-    signup: builder.mutation<IRegisterResponse, FormData>({
+    signup: builder.mutation<null, SignupData>({
       query(post) {
         return {
           url: 'auth/signup',
           body: post,
           method: 'POST',
         };
-      },
-      transformResponse: (result: {data: {post: IRegisterResponse}}) => {
-        return result.data.post;
       },
     }),
 
@@ -31,7 +29,7 @@ export const authApi = createApi({
           method: 'POST',
         };
       },
-      transformResponse: (result: IRegisterResponse) => {
+      transformResponse: (result: LoginResponse) => {
         return result;
       },
     }),

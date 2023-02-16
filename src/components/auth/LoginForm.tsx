@@ -28,7 +28,7 @@ export const LoginForm: React.FC<Props> = ({onSubmit}) => {
     mode: 'onBlur',
   });
 
-  const onPressHandler = () => navigation.navigate('Signup' as never);
+  const onPressHandler = () => navigation.navigate('Auth' as never, {screen: 'Signup'} as never);
 
   const onSubmitHandler = (loginData: FormData) => {
     onSubmit(loginData);
@@ -112,7 +112,7 @@ export const LoginForm: React.FC<Props> = ({onSubmit}) => {
 const styles = StyleSheet.create({
   loginFormContainer: {
     flex: 1,
-    paddingTop: 48,
+    paddingTop: 16,
     justifyContent: 'center',
   },
   textFieldContainer: {

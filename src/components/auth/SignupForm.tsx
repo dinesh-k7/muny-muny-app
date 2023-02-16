@@ -4,7 +4,13 @@ import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
 import {TextInput} from 'react-native-paper';
 
-import {GradientButton, TextField, AuthHeader, TextContent} from '@muny-components/native';
+import {
+  GradientButton,
+  TextField,
+  AuthHeader,
+  TextContent,
+  SelectBox,
+} from '@muny-components/native';
 import {Colors, CommonStyles} from '@muny-styles/global-styles';
 import {signupForm} from '../../utils/form-validation-rule';
 
@@ -27,6 +33,20 @@ interface Props {
   onSubmit: (data: FormData) => void;
 }
 
+const INITIATE_STATE = {
+  firstName: 'DINESH',
+  lastName: 'kumar',
+  email: 'dineshiie@gmail.com',
+  phone: '8672345643',
+  password: 'Repsol@99k',
+  confirmPassword: 'Repsol@99k',
+  addressLine1: '7011 Halifax',
+  addressLine2: '',
+  city: 'Halifax',
+  state: 'Nova Scotia',
+  country: 'Canada',
+  zipCode: '90001',
+};
 export const SignupForm: React.FC<Props> = ({onSubmit}) => {
   const navigation = useNavigation();
   const {
@@ -34,8 +54,10 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
     formState: {errors},
     formState,
     handleSubmit,
+    getValues,
   } = useForm<FormData>({
     mode: 'onBlur',
+    defaultValues: INITIATE_STATE,
   });
 
   const onPressHandler = () => navigation.navigate('Login' as never);
@@ -46,9 +68,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
   const phoneIcon = <TextInput.Icon icon="phone" />;
   const addressIcon = <TextInput.Icon icon="map-marker" />;
   const cityIcon = <TextInput.Icon icon="city" />;
-  const countryIcon = <TextInput.Icon icon="flag" />;
   const zipCodeIcon = <TextInput.Icon icon="post-outline" />;
-
   return (
     <View style={styles.signupFormContainer}>
       <AuthHeader isLogin={false} />
@@ -69,6 +89,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="First Name"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={50}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -94,6 +115,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Last Name"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={50}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -134,7 +156,6 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
             name="phone"
             control={control}
             defaultValue=""
-            rules={{...signupForm.phone}}
             render={({field: {onChange, value, onBlur}}: any) => (
               <>
                 <TextField
@@ -148,8 +169,6 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
-                  hasError={errors.phone && true}
-                  errorMessage={errors.phone?.message}
                 />
               </>
             )}
@@ -186,7 +205,10 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
             name="confirmPassword"
             control={control}
             defaultValue=""
-            rules={{...signupForm.confirmPassword}}
+            rules={{
+              ...signupForm.confirmPassword,
+              validate: value => value === getValues('password') || 'Passwords must match',
+            }}
             render={({field: {onChange, value, onBlur}}: any) => (
               <>
                 <TextField
@@ -222,6 +244,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Enter Street Address"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={75}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -246,6 +269,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Apt, Suite, Building, floor, etc."
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={75}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -269,6 +293,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Enter City"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={75}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -294,6 +319,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Enter State"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={75}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -309,21 +335,13 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
             name="country"
             control={control}
             defaultValue=""
-            rules={{...signupForm.country}}
             render={({field: {onChange, value, onBlur}}: any) => (
               <>
-                <TextField
+                <SelectBox
                   value={value}
-                  mode={'flat'}
-                  icon={countryIcon}
-                  placeholder="Select Country"
-                  keyboardType={'default'}
+                  placeHolderText={'Select Country'}
                   onBlur={onBlur}
-                  onChangeText={(v: any) => {
-                    return onChange(v);
-                  }}
-                  hasError={errors.country && true}
-                  errorMessage={errors.country?.message}
+                  onChange={onChange}
                 />
               </>
             )}
@@ -344,6 +362,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
                   placeholder="Enter zip code"
                   keyboardType={'default'}
                   onBlur={onBlur}
+                  maxLength={10}
                   onChangeText={(v: any) => {
                     return onChange(v);
                   }}
@@ -357,7 +376,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
           <TouchableOpacity style={styles.buttonContainer}>
             <GradientButton
               colors={[Colors.BUTTON_GRADIENT_ONE, Colors.BUTTON_GRADIENT_TWO]}
-              text={'Sign Up'}
+              text={'Select Plan'}
               style={CommonStyles.buttonGradient}
               textStyle={CommonStyles.buttonGradientText}
               disabled={!formState.isValid}
@@ -379,6 +398,7 @@ export const SignupForm: React.FC<Props> = ({onSubmit}) => {
 const styles = StyleSheet.create({
   signupFormContainer: {
     flex: 1,
+    marginTop: 24,
   },
   textFieldContainer: {
     flex: 2,
