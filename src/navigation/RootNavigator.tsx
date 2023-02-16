@@ -23,7 +23,7 @@ export const RootNavigator = () => {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{title: '', headerShown: false}} initialRouteName={Tabs.TABS}>
+      <Stack.Navigator screenOptions={{title: '', headerShown: false}}>
         <Stack.Screen
           name={AuthRoutes.AUTH}
           component={AuthStackNavigator}
